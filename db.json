@@ -49,12 +49,10 @@
       "updatedAt": "2024-05-28T10:00:00.000Z"
     },
     {
-      "id": 7,
       "title": "Nuxt 3: новые возможности и преимущества",
       "content": "# Nuxt 3: Фреймворк для Vue.js\n\nNuxt 3 — это последняя версия популярного фреймворка для создания веб-приложений на Vue.js. Он предлагает множество новых функций и улучшений по сравнению с предыдущими версиями.\n\n## Ключевые особенности Nuxt 3\n\n### Нативная поддержка TypeScript\nNuxt 3 полностью переписан на TypeScript, что обеспечивает лучшую типизацию и автодополнение кода.\n\n### Улучшенная производительность\nНовый движок Nitro обеспечивает более быстрый запуск и меньшее потребление памяти.\n\n```javascript\n// Пример API-маршрута в Nuxt 3\nexport default defineEventHandler(async (event) => {\n  const { id } = event.context.params;\n  const { data } = await $fetch(`/api/products/${id}`);\n  return { product: data };\n});\n```\n\n### Композиционный API\nNuxt 3 полностью поддерживает Composition API, которое стало стандартом в Vue 3.\n\n```vue\n<script setup>\nconst { data: products } = await useFetch('/api/products');\nconst filteredProducts = computed(() => {\n  // Логика фильтрации\n});\n</script>\n```\n\n## Режимы рендеринга\n\nNuxt 3 поддерживает множество режимов рендеринга:\n\n- **SSR (Server-Side Rendering)** — рендеринг на сервере\n- **SSG (Static Site Generation)** — генерация статических сайтов\n- **CSR (Client-Side Rendering)** — рендеринг на клиенте\n- **ISR (Incremental Static Regeneration)** — инкрементальная статическая регенерация\n\nЭта гибкость делает Nuxt 3 отличным выбором для широкого спектра проектов: от больших корпоративных приложений до простых лендингов.",
-      "author": "Наталья Кузнецова",
-      "createdAt": "2024-05-30T09:45:00.000Z",
-      "updatedAt": "2024-05-30T09:45:00.000Z"
+      "updatedAt": "2025-05-29T06:12:50.526Z",
+      "id": 7
     },
     {
       "id": 8,

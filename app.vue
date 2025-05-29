@@ -1,10 +1,30 @@
 <template>
   <div>
     <header class="header">
-      <nav class="nav">
-        <NuxtLink to="/" class="nav__link">Главная</NuxtLink>
-        <NuxtLink to="/posts" class="nav__link">Посты</NuxtLink>
-      </nav>
+      <div class="header__container">
+        <nav class="nav">
+          <NuxtLink to="/" class="nav__link">Главная</NuxtLink>
+          <NuxtLink to="/posts" class="nav__link">Посты</NuxtLink>
+        </nav>
+        <div class="auth-buttons">
+          <template v-if="isAuthenticated">
+            <NuxtLink to="/profile" class="auth-btn auth-btn--profile"
+              >Профиль</NuxtLink
+            >
+            <button @click="logout" class="auth-btn auth-btn--logout">
+              Выйти
+            </button>
+          </template>
+          <template v-else>
+            <NuxtLink to="/auth/login" class="auth-btn auth-btn--login"
+              >Войти</NuxtLink
+            >
+            <NuxtLink to="/auth/register" class="auth-btn auth-btn--register"
+              >Регистрация</NuxtLink
+            >
+          </template>
+        </div>
+      </div>
     </header>
     <main class="main">
       <NuxtPage />
@@ -15,6 +35,20 @@
 <script setup lang="ts">
 // Импортируем стили для подсветки синтаксиса
 import "highlight.js/styles/github.css";
+
+// Состояние авторизации (в реальном приложении вы бы загружали это из хранилища)
+const isAuthenticated = ref(false);
+
+// Функция для выхода из аккаунта
+const logout = () => {
+  // В реальном приложении здесь был бы код для разлогинивания
+  isAuthenticated.value = false;
+  // И перенаправление на главную страницу
+  navigateTo("/");
+};
+
+// Для тестирования - установите true, чтобы увидеть состояние "авторизован"
+// isAuthenticated.value = true;
 
 useHead({
   titleTemplate: "%s - Блог",
@@ -58,10 +92,16 @@ button {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.nav {
+.header__container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav {
   display: flex;
   gap: 20px;
 }
@@ -84,8 +124,97 @@ button {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.auth-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.auth-btn {
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.auth-btn--login {
+  background-color: white;
+  color: #2196f3;
+}
+
+.auth-btn--login:hover {
+  background-color: #f5f5f5;
+}
+
+.auth-btn--register {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.auth-btn--register:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.auth-btn--forgot {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+  padding: 6px 8px;
+}
+
+.auth-btn--forgot:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.auth-btn--profile {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.auth-btn--profile:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.auth-btn--logout {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.auth-btn--logout:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
 .main {
   padding: 20px 0;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+  .header__container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .auth-btn--forgot {
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+  }
 }
 
 /* Стили для Markdown */
