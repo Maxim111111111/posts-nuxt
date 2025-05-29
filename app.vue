@@ -3,8 +3,7 @@
     <header class="header">
       <nav class="nav">
         <NuxtLink to="/" class="nav__link">Главная</NuxtLink>
-        <NuxtLink to="/articles" class="nav__link">Статьи</NuxtLink>
-        <NuxtLink to="/api-test" class="nav__link">Тест API</NuxtLink>
+        <NuxtLink to="/posts" class="nav__link">Посты</NuxtLink>
       </nav>
     </header>
     <main class="main">
@@ -14,6 +13,9 @@
 </template>
 
 <script setup lang="ts">
+// Импортируем стили для подсветки синтаксиса
+import "highlight.js/styles/github.css";
+
 useHead({
   titleTemplate: "%s - Блог",
 });
@@ -84,5 +86,84 @@ button {
 
 .main {
   padding: 20px 0;
+}
+
+/* Стили для Markdown */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.markdown-content h1 {
+  font-size: 2em;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 0.3em;
+}
+
+.markdown-content h2 {
+  font-size: 1.5em;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 0.3em;
+}
+
+.markdown-content h3 {
+  font-size: 1.25em;
+}
+
+.markdown-content p {
+  margin-bottom: 1em;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 2em;
+  margin-bottom: 1em;
+}
+
+.markdown-content blockquote {
+  margin: 0 0 1em;
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+}
+
+.markdown-content pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+  margin-bottom: 1em;
+}
+
+.markdown-content code {
+  font-family:
+    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 0.9em;
+  padding: 0.2em 0.4em;
+  margin: 0;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+}
+
+.markdown-content pre code {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.markdown-content img {
+  max-width: 100%;
+  box-sizing: content-box;
+  background-color: #fff;
 }
 </style>

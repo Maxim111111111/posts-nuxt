@@ -186,8 +186,8 @@ useHead({
 
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
   margin-bottom: 2rem;
 }
 
@@ -198,6 +198,7 @@ useHead({
   transition:
     transform 0.3s,
     box-shadow 0.3s;
+  font-size: 0.8rem;
 
   &:hover {
     transform: translateY(-4px);
@@ -206,29 +207,34 @@ useHead({
 
   &__link {
     display: block;
-    padding: 1.5rem;
+    padding: 0.75rem;
     text-decoration: none;
     color: inherit;
   }
 
   &__title {
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #333;
-    margin: 0 0 1rem;
-    line-height: 1.3;
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
   }
 
   &__excerpt {
     color: #666;
-    margin: 0 0 1rem;
-    line-height: 1.5;
+    margin: 0 0 0.5rem;
+    line-height: 1.3;
+    font-size: 0.8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   &__meta {
     display: flex;
     justify-content: space-between;
     color: #999;
-    font-size: 0.875rem;
+    font-size: 0.7rem;
   }
 }
 
@@ -263,6 +269,67 @@ useHead({
   }
 }
 
+@media (min-width: 576px) {
+  .posts-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .posts-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .post-card {
+    &__link {
+      padding: 1.2rem;
+    }
+
+    &__title {
+      font-size: 1.3rem;
+      margin: 0 0 0.8rem;
+    }
+
+    &__excerpt {
+      font-size: 0.95rem;
+      margin: 0 0 0.8rem;
+    }
+
+    &__meta {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .posts-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .post-card {
+    &__link {
+      padding: 1.5rem;
+    }
+
+    &__title {
+      font-size: 1.5rem;
+      margin: 0 0 1rem;
+    }
+
+    &__excerpt {
+      font-size: 1rem;
+      margin: 0 0 1rem;
+    }
+
+    &__meta {
+      font-size: 0.875rem;
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .posts-page {
     padding: 1rem;
@@ -272,11 +339,6 @@ useHead({
       gap: 1rem;
       text-align: center;
     }
-  }
-
-  .posts-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
   }
 
   .pagination {

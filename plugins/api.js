@@ -1,7 +1,7 @@
-import { useArticlesApi } from "~/services/api";
+import usePostsApi from "~/services/api";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const api = useArticlesApi();
+  const api = usePostsApi();
 
   return {
     provide: {

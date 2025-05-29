@@ -17,7 +17,10 @@
           }}</span>
         </div>
 
-        <div class="post__content" v-html="post.content"></div>
+        <div
+          class="post__content markdown-content"
+          v-html="renderedContent"
+        ></div>
 
         <div class="post__actions" v-if="isAuthor">
           <NuxtLink :to="`/posts/edit/${post.id}`" class="post__edit-btn">
@@ -56,6 +59,15 @@ const isLoadingComments = ref(true);
 const error = ref("");
 const commentsError = ref("");
 const isDeleting = ref(false);
+
+// Получаем доступ к плагину Markdown
+const { $md } = useNuxtApp();
+
+// Преобразуем содержимое поста из Markdown в HTML
+const renderedContent = computed(() => {
+  if (!post.value || !post.value.content) return "";
+  return $md.render(post.value.content);
+});
 
 // В реальном приложении эти значения должны приходить из хранилища состояния
 const isAuthenticated = ref(true);
@@ -203,8 +215,43 @@ useHead({
     line-height: 1.6;
     color: #444;
 
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
     p {
       margin-bottom: 1.5rem;
+    }
+
+    ul,
+    ol {
+      margin-bottom: 1.5rem;
+      margin-left: 1.5rem;
+    }
+
+    pre {
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+    }
+
+    img {
+      margin: 1rem 0;
+      border-radius: 4px;
+      max-width: 100%;
+    }
+
+    blockquote {
+      border-left: 4px solid #ddd;
+      padding-left: 1rem;
+      font-style: italic;
+      color: #666;
+      margin: 1.5rem 0;
     }
   }
 

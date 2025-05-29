@@ -13,7 +13,7 @@
         </NuxtLink>
         <NuxtLink
           v-if="showEditButton"
-          :to="`/posts/${post.id}/edit`"
+          :to="`/posts/edit/${post.id}`"
           class="post-card__button post-card__button--secondary"
         >
           Редактировать
