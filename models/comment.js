@@ -16,9 +16,6 @@ CommentSchema.virtual("commentAddedSince").get(function() {
     return moment(this.createdAt).fromNow()
 });
 
-// the schema is useless so far
-// we need to create a model using it
 const Comment = mongoose.model('Comment', CommentSchema);
 
-// make this available to our users in our Node applications
 module.exports = Comment;

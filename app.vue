@@ -36,7 +36,7 @@
 // Импортируем стили для подсветки синтаксиса
 import "highlight.js/styles/github.css";
 
-// Состояние авторизации (в реальном приложении вы бы загружали это из хранилища)
+// Состояние авторизации
 const isAuthenticated = ref(false);
 
 // Функция для выхода из аккаунта
@@ -47,8 +47,6 @@ const logout = () => {
   navigateTo("/");
 };
 
-// Для тестирования - установите true, чтобы увидеть состояние "авторизован"
-// isAuthenticated.value = true;
 
 useHead({
   titleTemplate: "%s - Блог",

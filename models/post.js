@@ -6,7 +6,6 @@ const moment = require('moment')
 
 var CommentSchema = require('../models/comment').schema;
 
-// create a schema
 var PostSchema = new Schema({
     title: { type: String, required: true, index: true },
     description: { type: String },
@@ -23,9 +22,6 @@ PostSchema.virtual("publishedSince").get(function() {
     return moment(this.createdAt).fromNow()
 });
 
-// the schema is useless so far
-// we need to create a model using it
 const Post = mongoose.model('Post', PostSchema);
 
-// make this available to our users in our Node applications
 module.exports = Post;
